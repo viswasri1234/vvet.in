@@ -1,0 +1,16 @@
+/* Center the complete button */
+.sv-footer {
+    text-align: center !important; /* Center the footer content */
+}
+
+.sv-footer .sv-btn {
+    margin: 0 auto !important; /* Center the button within the footer */
+    display: block !important;
+}
+
+
+#sv-nav-complete{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}

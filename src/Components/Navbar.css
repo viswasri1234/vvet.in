@@ -1,0 +1,109 @@
+/* Navbar styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #343a40;
+  color: #fff;
+  width: 100%;
+  position: sticky;
+  padding: 20px !important;
+}
+
+.navbar .logo {
+  width: 80px;
+  height: auto;
+  border-radius: 35%;
+  padding: 20px;
+}
+
+.navbar .brand {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.navbar .brand-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  line-height: 15px;
+}
+
+.navbar .college-name {
+  margin: 0;
+}
+
+.navbar p {
+  font-size: 15px;
+}
+
+.navbar .links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+}
+
+.navbar .links {
+  padding: 5px 20px;
+}
+
+.navbar .links a:hover {
+  color: #28a745;
+}
+
+.navbar-header {
+  background-color: rgba(245, 146, 38, 1);
+  height: 30px;
+  width: 100%;
+}
+
+/* Add hamburger menu for small screens */
+.hamburger {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.navbar p{
+  margin: 0;
+}
+
+/* For screens smaller than 450px */
+@media (max-width: 900px) {
+  .navbar .links {
+    display: none; /* Hide the links by default */
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Adjust the position */
+    right: 0;
+    background-color: #343a40;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .navbar .links.open {
+    display: flex; /* Show links when the menu is open */
+    z-index: 10;
+    position: absolute;
+    top:100px;
+    transition: 2s linear ease-in-out;
+  }
+
+
+  /* Show the hamburger menu on small screens */
+  .hamburger {
+    display: block; /* Show hamburger */
+    color: #fff;
+  }
+
+  .navbar .links a {
+    padding: 10px 20px;
+    text-align: center;
+  }
+}

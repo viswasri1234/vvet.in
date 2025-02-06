@@ -1,0 +1,42 @@
+.marquee-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    background-color: #343a40;
+    color: white;
+    padding: 10px 20px;
+    position: relative;
+  }
+  
+  .marquee-message {
+    white-space: nowrap;
+    display: inline-block;
+    animation: scroll-left 30s linear infinite;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .register-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .register-button:hover {
+    background-color: #218838;
+  }
+  
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
