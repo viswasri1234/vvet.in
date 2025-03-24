@@ -40,7 +40,7 @@ const Footer = () => {
           <h3>Contact Us</h3>
           <p>
             Vetrivel Educational Trust<br />
-            Bengaluru,Karnataka - 560080<br />
+            Devakottai TamilNadu - 630302<br />
             Phone: (+91) 7604883357
           </p>
         </div>

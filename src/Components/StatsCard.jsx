@@ -12,7 +12,7 @@ const statistics = [
   },
   {
     label: 'Fund Raised',
-    value: '15 Lakhs',
+    value: '29 Lakhs',
     icon: <AttachMoney style={{ fontSize: '40px', color: '#FF5722' }} />  // Using the AttachMoney icon
   },
   {

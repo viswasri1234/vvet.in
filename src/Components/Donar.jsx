@@ -10,12 +10,12 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const AboutUs = () => {
+const Donar = () => {
   const navigate = useNavigate();
   return (
     <div style={{ padding: "40px 0", backgroundColor: "#f9f9f9" }}>
       <Container maxWidth="lg">
-        <h1 className='heading-border-bottom'>About Us</h1>
+        <h1 className='heading-border-bottom'>Donar</h1>
 
         <Grid container spacing={4}>
           {/* History Section */}
@@ -130,4 +130,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default Donar
