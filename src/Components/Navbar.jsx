@@ -39,8 +39,10 @@ const Navbar = () => {
           <Link to="/aboutUs">About Us</Link>
           <Link to="/register">Register</Link>
           <Link to="/contact">Contact</Link>
-          <Link to="/donar">Donar</Link>
-          <Link to="/fund raised">Fund Raised</Link>
+          <Link to="/donor">Donor</Link>
+          <Link to="/fundraised">FundRaised</Link>
+          
+          
         </div>
       </div>
     </nav>
