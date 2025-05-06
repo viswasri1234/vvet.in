@@ -1,0 +1,205 @@
+/* Centering the form container */
+.form-container {
+    
+   
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #f3f4f6, #e0e0e0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: auto;
+
+}
+/* Styling for labels */
+label {
+    font-size: 20px; /* Increased label font size */
+    font-weight: bold;
+}
+/* Container for each radio button */
+.radio-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 380px; /* Reduced width */
+    height: 35px; /* Smaller height */
+    padding: 6px;
+    border: 1.5px solid #ccc;
+    border-radius: auto;
+    border: none;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9;
+    transition: 0.3s ease-in-out;
+    font-size: 14px; /* Increased font size */
+}
+
+.radio-box:hover {
+    background-color: #e0e0e0;
+}
+.radio-label {
+    font-size: 14px; /* Reduce label font size */
+}
+/* Bigger radio buttons */
+.radio-input {
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+/* Buttons container */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Bigger buttons for Next, Back, and Submit */
+.form-button {
+    padding: 8px 20px;
+    font-size: 18px; /* Increased font size */
+    font-weight: bold;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: auto;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    width: 150px;
+    text-align: center;
+}
+
+.form-button:hover {
+    background-color: #1e40af;
+}
+
+.form-button:disabled {
+    background-color: #a1a1aa;
+    cursor: not-allowed;
+}
+
+/* Upload section adjustments */
+.upload-section {
+    text-align: center;
+}
+
+.upload-title {
+    font-size: 20px; /* Increased font size */
+    margin-bottom: 8px;
+}
+
+.file-input {
+    margin: 8px 0;
+    font-size: 18px; /* Increased font size */
+}
+
+/* Image preview styling */
+.image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.uploaded-image {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.upload-box {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 10px auto;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    font-size: 18px; /* Increased font size */
+}
+
+.upload-box:hover {
+    border-color: #007bff;
+}
+
+.upload-placeholder {
+    color: #888;
+    font-size: 18px; /* Increased font size */
+}
+
+/* Grey color for Next and Back buttons */
+.form-button.next-button,
+.form-button.back-button {
+    background-color: #4b5563; 
+    width: 100px;
+    height: 35px;
+    font-size: 18px; /* Increased font size */
+}
+
+.form-button.next-button:hover,
+.form-button.back-button:hover {
+    background-color: #4b5563; /* Darker Grey on hover */
+}
+
+/* Blue color for Submit button */
+.form-button.submit-button {
+    background-color: #2563eb; /* Blue */
+    width: 100px;
+    height: 35px;
+    font-size: 18px; /* Increased font size */
+}
+
+.form-button.submit-button:hover {
+    background-color: #1e40af; /* Darker Blue on hover */
+}
+
+/* Input Fields */
+.input-small {
+    font-size: 14px;
+    margin-top: 5px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    border: none;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+    width: 380px; /* Reduced width */
+    height: 30px; /* Smaller height */
+    padding: 8px;
+  }
+  
+  
+  .container-box{
+    border: 3px solid #eeeeee;
+    padding: 20px;
+    margin: 15px auto 0 auto;
+    width: 33%;
+    background-color: #eeeeee; /* Lighter Grey Background */
+    border-radius: 10px;
+    color: black; 
+  }
+  
+  .center-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffffff; /* or any background you like */
+    
+  }
+  
+  
+
+  
+ 
+  

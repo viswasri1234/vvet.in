@@ -9,7 +9,7 @@ const Contact = () => {
         Email: <a href="mailto:VETRIVEL.EDUCATION.TRUST@gmail.com">VETRIVEL.EDUCATION.TRUST@gmail.com</a>
       </p>
       <p>
-        <FaPhone /> <a href="tel:+917604883357">+91 7604883357</a>
+        <FaPhone /> <a href="tel:+917604883357">+91 9632828337</a>
       </p>
       <p>
         <FaLinkedin /> <a href="https://www.linkedin.com/in/vallies/" target="_blank" rel="noopener noreferrer">Valli's LinkedIn</a>

@@ -17,7 +17,8 @@ const Carousel = ({ images }) => {
       <img 
         src={images[currentIndex]} 
         alt={`Slide ${currentIndex + 1}`} 
-        className="carousel-image" 
+        className="carousel-image"
+
       />
       <div className="carousel-indicators">
         {images.map((_, index) => (

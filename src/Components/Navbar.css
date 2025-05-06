@@ -7,14 +7,16 @@
   color: #fff;
   width: 100%;
   position: sticky;
-  padding: 20px !important;
+  top: 0;
+  z-index: 1000;
+  padding: 15px 20px;
 }
 
 .navbar .logo {
   width: 80px;
   height: auto;
   border-radius: 35%;
-  padding: 20px;
+  padding: 10px;
 }
 
 .navbar .brand {
@@ -22,16 +24,15 @@
   font-weight: bold;
   cursor: pointer;
   display: flex;
-  justify-content: start;
   align-items: center;
 }
 
 .navbar .brand-section {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: start;
-  line-height: 15px;
+  align-items: flex-start;
+  line-height: 1.2;
+  margin-left: 10px;
 }
 
 .navbar .college-name {
@@ -40,70 +41,102 @@
 
 .navbar p {
   font-size: 15px;
+  margin: 0;
 }
 
+/* Links Container */
+.navbar .links {
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+}
+
+/* Default Navbar Links */
 .navbar .links a {
   margin: 0 10px;
   text-decoration: none;
   color: #fff;
   font-size: 18px;
+  transition: all 0.3s ease-in-out;
 }
 
-.navbar .links {
-  padding: 5px 20px;
+/* Fundraising Button */
+.navbar .links .fundraising-link {
+  background-color: #28a745; /* Green background */
+  color: white !important;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  border: 2px solid transparent;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-.navbar .links a:hover {
-  color: #28a745;
+.navbar .links .fundraising-link:hover {
+  background-color: white;
+  color: #28a745 !important;
+  border: 2px solid #28a745;
 }
 
+/* Navbar Header */
 .navbar-header {
   background-color: rgba(245, 146, 38, 1);
   height: 30px;
   width: 100%;
 }
 
-/* Add hamburger menu for small screens */
+/* Hamburger menu for small screens */
 .hamburger {
   display: none;
   font-size: 30px;
   cursor: pointer;
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 10px;
 }
 
-.navbar p{
-  margin: 0;
-}
-
-/* For screens smaller than 450px */
+/* Mobile Responsiveness */
 @media (max-width: 900px) {
   .navbar .links {
-    display: none; /* Hide the links by default */
+    display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 60px; /* Adjust the position */
-    right: 0;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 60%;
+    height: 100vh;
     background-color: #343a40;
-    width: 100%;
-    padding: 10px 0;
+    padding-top: 60px;
+    transition: right 0.3s ease-in-out;
   }
 
   .navbar .links.open {
-    display: flex; /* Show links when the menu is open */
-    z-index: 10;
-    position: absolute;
-    top:100px;
-    transition: 2s linear ease-in-out;
-  }
-
-
-  /* Show the hamburger menu on small screens */
-  .hamburger {
-    display: block; /* Show hamburger */
-    color: #fff;
+    right: 0;
   }
 
   .navbar .links a {
-    padding: 10px 20px;
+    padding: 15px 20px;
     text-align: center;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .navbar .links .fundraising-link {
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  /* Prevent scrolling when menu is open */
+  body.menu-open {
+    overflow: hidden;
   }
 }
+
+
+

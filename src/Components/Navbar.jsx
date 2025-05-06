@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
-const Navbar = () => {
+function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false); // State to handle the hamburger menu toggle
   const navigate = useNavigate();
 
   // Toggle menu visibility
-  const toggleMenu = () => {
+  function toggleMenu() {
     setMenuOpen(!menuOpen);
-  };
+  }
 
   return (
     <nav className="navbar-container">
@@ -29,24 +29,27 @@ const Navbar = () => {
         </div>
 
         {/* Hamburger icon */}
-        <div className="hamburger" onClick={toggleMenu}>
+        <button className="hamburger" onClick={toggleMenu} aria-label="Toggle menu">
           &#9776;
-        </div>
+        </button>
 
         {/* Links */}
         <div className={`links ${menuOpen ? "open" : ""}`}>
-          <Link to="/">Home</Link>
+          <Link to="/home">Home</Link>
           <Link to="/aboutUs">About Us</Link>
-          <Link to="/register">Register</Link>
+          
           <Link to="/contact">Contact</Link>
-          <Link to="/donor">Donor</Link>
-          <Link to="/fundraised">FundRaised</Link>
+      
+          <Link to="/FundDrive">Projects</Link>
+          <Link to="/supporter">Donor</Link>
+
           
           
         </div>
       </div>
     </nav>
   );
-};
+}
 
 export default Navbar;
+
