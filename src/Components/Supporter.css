@@ -1,205 +1,206 @@
-/* Overall Supporter Container */
-.supporter-container {
+body {
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  background-color: #fefcfb;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.container-box {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  width: 100%;
+  max-width: 720px;
+}
+
+form h4 {
+  font-size: 24px;
+  color: #2c3e50;
+  margin-bottom: 24px;
+  font-weight: 600;
+  border-left: 5px solid #f39c12;
+  padding-left: 12px;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+  color: #34495e;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-field {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  
 }
 
-/* Styling for labels */
-label {
-  font-size: 20px; /* Increased label font size */
-  font-weight: bold;
-}
-h3 {
-  text-align: center;
-  margin-bottom: 15px;
-  color: #333;
+.full-width {
+  grid-column: 1 / -1;
 }
 
-label {
-  display: block;
-  font-size: 14px;
-  font-weight: bold;
-  margin-top: 10px;
-  color: #555;
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+input[type="pan"] {
+padding: 12px 14px;
+border: 1px solid #ddd;
+border-radius: 8px;
+font-size: 15px;
+background-color: #fefefe;
+margin-top: 6px;
+transition: border-color 0.2s ease;
 }
 
-/* Input Fields */
-.input-small {
-  font-size: 14px;
-  margin-top: 5px;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  border: none;
-  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease-in-out;
-  width: 380px; /* Reduced width */
-  height: 30px; /* Smaller height */
-  padding: 8px;
-}
-
-.input-small:focus {
-  background-color: #ffffff;
-  border-color: #2563eb;
+input:focus {
+  border-color: #f39c12;
   outline: none;
 }
 
-/* File Input */
-input[type="file"] {
-  padding: 5px;
-  background-color: #fff;
-  border-radius: 5px;
+.radio-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.radio-input {
+  margin-right: 10px;
+  accent-color: #e67e22;
+}
+
+.radio-label {
+  font-size: 15px;
+  color: #555;
+}
+.input-small {
+  padding: 8px;
+  width: 100%;
+  border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 14px;
 }
 
-input[type="file"]:hover {
+.file-input {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  text-align: center;
+  background-color: #fffdf9;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-/* Button Container */
+.file-input:hover {
+  border-color: #f39c12;
+  background-color: #fff8eb;
+}
+
+.upload-placeholder {
+  color: #999;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.upload-title {
+  font-size: 20px;
+  color: #2c3e50;
+  margin: 20px 0;
+  font-weight: 600;
+}
+
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.uploaded-image {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #ffe3b3;
+}
+
 .button-group {
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 15px;
+  justify-content: space-between;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
-/* Button Styling */
 .form-button {
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: bold;
-  background-color: #2563eb; /* Default to blue */
-  color: white;
+  background-color: #4a90e2;
+  color: #fff;
+  padding: 10px 24px;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease-in-out;
-  width: 150px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  height: 44px; /* same height for all buttons */
+  line-height: 1.2;
+}
+.next-button {
+  background-color: #f39c12;
+  color: white;
 }
 
-.form-button:hover {
-  background-color: #1e40af;
+.back-button {
+  background-color: #dcdcdc;
+  color: #333;
+}
+
+.submit-button {
+  background-color: #27ae60;
+  color: white;
 }
 
 .form-button:disabled {
-  background-color: #a1a1aa;
+  background-color: #ccc;
   cursor: not-allowed;
 }
 
-/* Image Preview */
-.preview-image {
-  width: 100%;
-  max-height: 200px;
-  object-fit: contain;
-  margin-top: 10px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
+.form-button:hover:not(:disabled) {
+  opacity: 0.9;
 }
 
-/* Responsive Design */
-@media (max-width: 500px) {
-  .supporter-container {
-    max-width: 100%;
-    padding: 15px;
+@media (max-width: 600px) {
+  .container-box {
+    padding: 24px;
   }
-  
+
   .form-button {
     width: 100%;
   }
-}
 
-/* Dark Grey color for Next and Back buttons */
-
-
-.form-button.next-button{
-  background-color: #4b5563; /* Dark grey */
-  width: 100px;
-  height: 35px;
-}
-.form-button.back-button {
-  background-color: #4b5563; /* Dark grey */
-  width: 100px;
-  height: 35px;
-}
-form-button.next-button:hover{
-  background-color: #374151; /* Darker grey on hover */
-}
-.form-button.back-button:hover {
-  background-color: #374151; /* Darker grey on hover */
-}
-
-/* Blue color for Submit button */
-.form-button.submit-button {
-  background-color: #2563eb; /* Blue */
-  width: 100px;
-  height: 35px;
-}
-
-.form-button.submit-button:hover {
-  background-color: #1e40af; /* Darker blue on hover */
-}
-
-/* Highlight the required fields if they are not filled */
-input:invalid, select:invalid, input[type="file"]:invalid {
-  border-color: #ccc; /* Default border for invalid fields (no color change) */
-  background-color: #f5f5f5; /* Keep the default background for invalid fields */
-}
-
-input:valid, select:valid, input[type="file"]:valid {
-  border-color: #ccc; /* Default border for valid fields (no color change) */
-  background-color: #f5f5f5; /* Keep the default background for valid fields */
-}
-
-/* Add a "required" text next to input fields to indicate they are mandatory */
-label::after {
-  content: "*";
-  color: red;
-  padding-left: 5px;
-}
-
-.form-button.upi-button
-{
-  background-color: #008712; /* Blue */
-  width: 200px;
-  height: 35px;
-}
-
-.form-button.upi-button:hover {
-  background-color: #008712; /* Darker blue on hover */
-}
-.form-button.net-banking-button
-{
-  background-color: #008712; /* Blue */
-  width: 215px;
-  height: 35px;
-}
-.form-button.net-banking-button:hover{
-  background-color:#008712; /* Darker blue on hover */
-} ;
-
-.step-box {
-  border: 3px solid #eeeeee;
-  padding: 25px;
-  margin: 20px auto;
-  width: 80%;
-  background-color: #eeeeee; /* Lighter Grey Background */
-  border-radius: 10px;
-  color: black; /* Adjusted text color for better contrast */
-}
-
-.step1-box, .step2-box, .step3-box, .step4-box {
-  border: 3px solid #eeeeee;
-  padding: 20px;
-  margin: 15px 0;
-  background-color: #eeeeee; /* Even Lighter Grey Background */
-  border-radius: 8px;
-  color: black;
+  .button-group {
+    flex-direction: column;
+    gap: 12px;
+  }
 }
 
 
