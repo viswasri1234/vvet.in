@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Supporter.css";
 import { submitVvvetForm } from "../vvvetApi";
 import axios from "axios";
+import html2canvas from "html2canvas";  // Import html2canvas
 
 const Supporter = () => {
   const [step, setStep] = useState(1);
@@ -11,22 +12,34 @@ const Supporter = () => {
     phone: "",
     age: "",
     dob: "",
+    category: "",
     pan: "",
-    aadhar: "",
-    accountNumber: "",
-    ifsc: "",
-    images: []
+    customCategory: "",
+    images: [],
+    paymentMethod: "" // ✅ Added payment method
   });
+
   const [isPanVerified, setIsPanVerified] = useState(false);
   const [verificationError, setVerificationError] = useState("");
   const [panImage, setPanImage] = useState(null);
+  const [aadhaarImage, setAadhaarImage] = useState(null); // ✅ Aadhaar state
+
+  const categories = [
+    "Medical Fundraising",
+    "Education & Scholarships",
+    "Disaster Relief &  Aid",
+    "Memorial & Tribute Funds",
+    "Community Development",
+    "Social Causes",
+    "Religious & Faith-Based Giving",
+    "Crowdfunding for Needs",
+    "Nonprofit & NGO Fundraising",
+    "Others",
+  ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleImageUpload = (event) => {
@@ -37,6 +50,11 @@ const Supporter = () => {
   const handlePanImageUpload = (e) => {
     const file = e.target.files[0];
     setPanImage(file);
+  };
+
+  const handleAadhaarImageUpload = (e) => {
+    const file = e.target.files[0];
+    setAadhaarImage(file);
   };
 
   const handleNext = () => {
@@ -86,6 +104,9 @@ const Supporter = () => {
         return false;
       }
     } catch (error) {
+      console.error("Error verifying PAN:", error);
+      setIsPanVerified(false);
+
       if (error.response) {
         setVerificationError(error.response.data.message || "PAN verification failed. Server returned an error.");
       } else if (error.request) {
@@ -94,7 +115,6 @@ const Supporter = () => {
         setVerificationError("An error occurred during PAN verification.");
       }
 
-      setIsPanVerified(false);
       return false;
     }
   };
@@ -110,6 +130,11 @@ const Supporter = () => {
       }
     }
 
+    if (!formData.paymentMethod) {
+      alert("Please select a payment method before submitting.");
+      return;
+    }
+
     try {
       await submitVvvetForm(formData);
       alert("Form submitted successfully!");
@@ -119,103 +144,76 @@ const Supporter = () => {
     }
   };
 
+  // Capture the payment section screenshot
+  const capturePaymentScreenshot = async (paymentSectionId) => {
+    const element = document.getElementById(paymentSectionId);
+    if (element) {
+      try {
+        const canvas = await html2canvas(element);
+        const imageData = canvas.toDataURL("image/png");
+        // Here, you can save or do something with the screenshot (e.g., send it to the server)
+        console.log(imageData); // For now, we just log the image data URL
+        alert("Screenshot captured successfully!");
+      } catch (error) {
+        console.error("Error capturing screenshot:", error);
+      }
+    }
+  };
+
   return (
     <div className="container">
       <div className="container-box">
-        <form>
+        <form onSubmit={handleSubmit}>
           {step === 1 && (
             <div className="step-box">
               <h4>Step 1: Personal Details</h4>
-
               <div className="form-grid">
                 <div className="form-field">
                   <label>Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Full Name"
-                  />
+                  <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
                 </div>
-
                 <div className="form-field">
                   <label>Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="example@domain.com"
-                  />
+                  <input type="email" name="email" value={formData.email} onChange={handleInputChange} required />
                 </div>
-
                 <div className="form-field">
                   <label>Age</label>
-                  <input
-                    type="number"
-                    name="age"
-                    value={formData.age}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="e.g. 25"
-                  />
+                  <input type="number" name="age" value={formData.age} onChange={handleInputChange} required />
                 </div>
-
                 <div className="form-field">
                   <label>Date of Birth</label>
-                  <input
-                    type="date"
-                    name="dob"
-                    value={formData.dob}
-                    onChange={handleInputChange}
-                    required
-                  />
+                  <input type="date" name="dob" value={formData.dob} onChange={handleInputChange} required />
                 </div>
               </div>
 
               <div className="form-field">
                 <label>Phone Number</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="10-digit number"
-                />
+                <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required />
               </div>
 
               <div className="form-field">
                 <label>PAN Number</label>
-                <input
-                  type="text"
-                  name="pan"
-                  value={formData.pan}
-                  onChange={handleInputChange}
-                  required
-                  maxLength={10}
-                  placeholder="e.g. ABCDE1234F"
-                  className="input-small"
-                  pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"
-                  title="Enter valid 10-character PAN (e.g. ABCDE1234F)"
-                />
+                <input type="text" name="pan" value={formData.pan} onChange={handleInputChange} required />
+              </div>
+
+              <div className="form-field">
+                <label>Aadhar Number</label>
+                <input type="text" name="aadhaar" value={formData.aadhaar} onChange={handleInputChange} required />
               </div>
 
               <div className="form-field">
                 <label>Upload PAN Image</label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handlePanImageUpload}
-                  required
-                />
+                <input type="file" accept="image/*" onChange={handlePanImageUpload} required />
                 {panImage && <p>{panImage.name}</p>}
               </div>
 
-              {verificationError && <p style={{ color: 'red' }}>{verificationError}</p>}
+              <div className="form-field">
+                <label>Upload Aadhaar Image</label>
+                <input type="file" accept="image/*" onChange={handleAadhaarImageUpload} required />
+                {aadhaarImage && <p>{aadhaarImage.name}</p>}
+              </div>
+
+              {verificationError && <p style={{ color: "red" }}>{verificationError}</p>}
 
               <div className="form-field">
                 <button
@@ -226,148 +224,93 @@ const Supporter = () => {
                 >
                   Verify PAN
                 </button>
-                {isPanVerified && <p style={{ color: 'green' }}>PAN verified successfully!</p>}
+                {isPanVerified && <p style={{ color: "green" }}>PAN verified successfully!</p>}
               </div>
 
               <div className="button-group">
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  className="form-button next-button"
-                  disabled={
-                    !formData.name ||
-                    !formData.email ||
-                    !formData.phone ||
-                    !formData.age ||
-                    !formData.dob ||
-                    !formData.pan
-                  }
-                >
+                <button type="button" onClick={handleNext} className="form-button next-button">
                   Next
                 </button>
               </div>
             </div>
           )}
 
-          {step === 2 && (
-            <div className="form-container-box">
-              <h4>Step 2: Aadhar & Bank Details</h4>
+          {step === 4 && (
+            <div className="payment-method-box">
+              <h4>Step 4: Select a Payment Method</h4>
 
-              <div className="form-field">
-                <label>Aadhar Number</label>
+              <div className="radio-box">
                 <input
-                  type="text"
-                  name="aadhar"
-                  value={formData.aadhar}
+                  type="radio"
+                  name="paymentMethod"
+                  value="upi"
+                  checked={formData.paymentMethod === "upi"}
                   onChange={handleInputChange}
-                  placeholder="12-digit Aadhar"
-                  maxLength={12}
-                  pattern="\d{12}"
-                  required
+                  className="radio-input"
                 />
+                <label className="radio-label">Pay via UPI</label>
               </div>
 
-              <div className="form-field">
-                <label>Bank Name</label>
+              <div className="radio-box">
                 <input
-                  type="text"
-                  name="Bank name"
-                  value={formData.accountNumber}
+                  type="radio"
+                  name="paymentMethod"
+                  value="netbanking"
+                  checked={formData.paymentMethod === "netbanking"}
                   onChange={handleInputChange}
-                  required
-                  placeholder="Bank name"
+                  className="radio-input"
                 />
+                <label className="radio-label">Pay via Net Banking</label>
               </div>
 
-              <div className="form-field">
-                <label>Bank Branch</label>
-                <input
-                  type="text"
-                  name="branch name"
-                  value={formData.accountNumber}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="Bank branch name"
-                />
+              <div id="payment-upi-section">
+                {formData.paymentMethod === "upi" && (
+                  <div className="upi-box">
+                    <a
+                      href="upi://pay?pa=157511100001246@UBIN0815756.ifsc.npci&pn=Ashoka Windows and Annex Apartment Owners Association&cu=INR&am=50&tn=113 Dec 2021 fine&tr=202112113fine&refUrl=https://www.ashokawindows.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="upi-link"
+                    >
+                      Click to Pay via UPI
+                    </a>
+                    <p>Use any UPI app like Google Pay, PhonePe, Paytm, etc.</p>
+                    <button
+                      type="button"
+                      onClick={() => capturePaymentScreenshot("payment-upi-section")}
+                    >
+                      Capture UPI Screenshot
+                    </button>
+                  </div>
+                )}
               </div>
 
-              <div className="form-field">
-                <label>Account Number</label>
-                <input
-                  type="text"
-                  name="accountNumber"
-                  value={formData.accountNumber}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="Account Number"
-                />
-              </div>
-
-              <div className="form-field">
-                <label>IFSC Code</label>
-                <input
-                  type="text"
-                  name="ifsc"
-                  value={formData.ifsc}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="e.g. SBIN0001234"
-                  pattern="^[A-Z]{4}0[A-Z0-9]{6}$"
-                  title="Enter valid IFSC (e.g. SBIN0001234)"
-                />
+              <div id="payment-netbanking-section">
+                {formData.paymentMethod === "netbanking" && (
+                  <div className="netbanking-box">
+                    <p>Proceed to your bank’s Net Banking portal and transfer ₹50 to:</p>
+                    <ul>
+                      <li>Account: <strong>Ashoka Windows and Annex Apartment Owners Association</strong></li>
+                      <li>Account Number: <strong>157511100001246</strong></li>
+                      <li>IFSC: <strong>UBIN0815756</strong></li>
+                    </ul>
+                    <p>Reference: <strong>202112113fine</strong></p>
+                    <button
+                      type="button"
+                      onClick={() => capturePaymentScreenshot("payment-netbanking-section")}
+                    >
+                      Capture Net Banking Screenshot
+                    </button>
+                  </div>
+                )}
               </div>
 
               <div className="button-group">
                 <button type="button" className="form-button back-button" onClick={handleBack}>
                   Back
                 </button>
-                <button
-                  type="button"
-                  className="form-button next-button"
-                  onClick={handleNext}
-                  disabled={
-                    !formData.aadhar ||
-                    !formData.accountNumber ||
-                    !formData.ifsc
-                  }
-                >
-                  Next
-                </button>
-              </div>
-            </div>
-          )}
-
-          {step === 3 && (
-            <div className="upload-section-box">
-              <h4>Step 3: Upload an Image</h4>
-              <div className="upload-box">
-                <input
-                  type="file"
-                  multiple
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  className="file-input"
-                />
-                <p className="upload-placeholder">Click or Drag & Drop to upload images</p>
-              </div>
-
-              <div className="image-preview">
-                {formData.images.map((image, index) => (
-                  <img key={index} src={URL.createObjectURL(image)} alt={`Proof ${index + 1}`} className="uploaded-image" />
-                ))}
-              </div>
-
-              <div className="button-group">
-                <button type="button" className="form-button back-button" onClick={handleBack}>
-                  Back
-                </button>
-                <button
-                  type="button"
-                  className="form-button submit-button"
-                  onClick={handleSubmit}
-                  disabled={formData.images.length === 0}
-                >
-                  Submit
+                <button type="submit" className="form-button submit-button" disabled={!formData.paymentMethod}>
+                  Submit Form
                 </button>
               </div>
             </div>
